@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <!-- 引入 Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="css/bootstrap.bundle.min.js"></script>
+    <!-- 引入自訂 CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 頁首 -->
+    <header class="bg-secondary text-white py-3">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="m-0">ZILIN's Portfolio</h1>
+                <nav>
+                    <a href="#about" class="text-white mx-2 text-decoration-none">About.</a>
+                    <a href="#projects" class="text-white mx-2 text-decoration-none">Illustration.</a>
+                    <a href="#contact" class="text-white mx-2 text-decoration-none">3Dwork.</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Carousel -->
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+    <!-- Indicators/dots -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    </div>
+    
+    <!-- The slideshow/carousel -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="img/banner01.png" alt="Los Angeles" class="d-block" style="width:100%">
+      </div>
+      <div class="carousel-item">
+        <img src="img/banner02.JPG" alt="Chicago" class="d-block" style="width:100%">
+      </div>
+      <div class="carousel-item">
+        <img src="img/banner03.JPG" alt="New York" class="d-block" style="width:100%">
+      </div>
+    </div>
+    
+    <!-- Left and right controls/icons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+  
+    
+
+    <!-- 介紹區塊 -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2>About.</h2>
+                    <p>Hello, this is ZI LIN.
+                        I'm currently studying at NUTC and majoring in Multimedia Design.
+                        This website is used for recording my works.</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img src="img/me.png" alt="Profile Picture">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品區塊 -->
+    <section id="projects" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Illustration.</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card shadow h-100">
+                        <img src="img/project01.png" class="card-img-top" alt="Project 1">
+                        <div class="card-body">
+                            <h5 class="card-title">窗邊的杏子</h5>
+                            <p class="card-text">Software Used:Proceate</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow h-100">
+                        <img src="img/project02.png" class="card-img-top" alt="Project 2">
+                        <div class="card-body">
+                            <h5 class="card-title">時髦魔女-6月號2024</h5>
+                            <p class="card-text">Software Used:Proceate</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow h-100">
+                        <img src="img/project03.png" class="card-img-top" alt="Project 3">
+                        <div class="card-body">
+                            <h5 class="card-title">杏子</h5>
+                            <p class="card-text">Software Used:Proceate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡區塊 -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">3Dwork.</h2>
+            <div class="row g-4">
+                <div class="col-md-12">
+                    <div class="card shadow h-100">
+                        <img src="img/m41.png" class="card-img-top" alt="Project 1">
+                        <div class="card-body">
+                            <h5 class="card-title">M41A pulse</h5>
+                            <p class="card-text">Software Used:Maya, Substance Painter</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card shadow h-100">
+                        <img src="img/phone.jpg" class="card-img-top" alt="Project 2">
+                        <div class="card-body">
+                            <h5 class="card-title">電話亭</h5>
+                            <p class="card-text">Software Used:Maya, Substance Painter</p>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="bg-secondary text-white text-center py-3">
+        <p class="mb-0">© 2024 ZILIN's Portfolio.</p>
+    </footer>
+</body>
+</html>

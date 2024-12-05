@@ -1,0 +1,41 @@
+/* 通用樣式 */
+body {
+    font-family:Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    font-weight: 700;
+}
+
+/* 介紹區塊動畫 */
+#about img {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-in-out;
+}
+
+#about img.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 滾動動畫 */
+.card {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-in-out;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
