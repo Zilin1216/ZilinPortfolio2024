@@ -2,40 +2,119 @@
 body {
     font-family:Helvetica, sans-serif;
     scroll-behavior: smooth;
+    padding-top: 80px;
 }
 
 header {
-    position: sticky;
-    top: 0;
-    z-index: 1020;
+    background-color: #afded9;
+    color: white; /* 文字顏色 */
+    padding: 1rem 0; /* 上下內距 */
+    position: fixed; /* 固定位置 */
+    top: 0; /* 固定在頁面頂部 */
+    width: 100%; /* 滿版寬度 */
+    z-index: 1000; /* 確保位於其他內容之上 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
-    font-weight: 700;
+header h1 {
+    margin: 0; /* 移除標題的預設外距 */
 }
 
-/* 介紹區塊動畫 */
+header nav a {
+    color: white; /* 設定連結文字顏色 */
+    margin: 0 0.5rem; /* 設定左右間距 */
+    text-decoration: none; /* 去除底線 */
+}
+
+header nav a:hover {
+    text-decoration: underline; /* 滑鼠移上時加底線 */
+}
+
+#about {
+    padding: 5rem 0;
+    background-color: #f8f9fa; /* Bootstrap 的 light 顏色 */
+}
+
 #about img {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease-in-out;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* 添加圓角 */
 }
 
-#about img.visible {
-    opacity: 1;
-    transform: translateY(0);
+#about h2 {
+    font-weight: bold;
+    margin-bottom: 1.5rem;
 }
 
-/* 滾動動畫 */
+#about p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+#projects {
+    padding: 5rem 0;
+    background-color: #ffffff;
+}
+
+#projects h2 {
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
 .card {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease-in-out;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-.card.visible {
-    opacity: 1;
-    transform: translateY(0);
+.card:hover {
+    transform: translateY(-10px);
 }
 
+.card img {
+    border-radius: 4px;
+}
+
+.card .card-title {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+#contact {
+    padding: 5rem 0;
+    background-color: #f8f9fa;
+}
+
+#contact h2 {
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#contact .card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#contact .card img {
+    border-radius: 4px;
+}
+
+#contact .card-title {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+
+footer {
+    background-color:#afded9;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}

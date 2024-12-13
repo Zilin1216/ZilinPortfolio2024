@@ -6,21 +6,22 @@
     <title>Portfolio Website</title>
     <!-- 引入 Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="css/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
     <!-- 引入自訂 CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <!-- 頁首 -->
-    <header class="bg-secondary text-white py-3">
+    <header>
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <h1 class="m-0">ZILIN's Portfolio</h1>
+                <h1>ZILIN's Portfolio</h1>
                 <nav>
-                    <a href="#about" class="text-white mx-2 text-decoration-none">About.</a>
-                    <a href="#projects" class="text-white mx-2 text-decoration-none">Illustration.</a>
-                    <a href="#contact" class="text-white mx-2 text-decoration-none">3Dwork.</a>
+                    <a href="#about">About.</a>
+                    <a href="/Portfolio/illustration.html" target="_blank">illustration</a>
+                    <a href="#media">Media.</a>
+                    <a href="#3Dwork">3Dwork.</a>
                 </nav>
             </div>
         </div>
@@ -58,8 +59,6 @@
     </button>
   </div>
   
-    
-
     <!-- 介紹區塊 -->
     <section id="about" class="py-5">
         <div class="container">
@@ -78,43 +77,29 @@
     </section>
 
     <!-- 作品區塊 -->
-    <section id="projects" class="bg-light py-5">
+
+    <section id="media" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-4">Illustration.</h2>
+            <h2 class="text-center mb-4">Media.</h2>
             <div class="row g-4">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <div class="card shadow h-100">
-                        <img src="img/project01.png" class="card-img-top" alt="Project 1">
-                        <div class="card-body">
-                            <h5 class="card-title">窗邊的杏子</h5>
-                            <p class="card-text">Software Used:Proceate</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow h-100">
-                        <img src="img/project02.png" class="card-img-top" alt="Project 2">
-                        <div class="card-body">
-                            <h5 class="card-title">時髦魔女-6月號2024</h5>
-                            <p class="card-text">Software Used:Proceate</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow h-100">
-                        <img src="img/project03.png" class="card-img-top" alt="Project 3">
-                        <div class="card-body">
-                            <h5 class="card-title">杏子</h5>
-                            <p class="card-text">Software Used:Proceate</p>
-                        </div>
+                        <video width="fuid" controls>
+                            <source src="media/Dream.mp4" type="video/mp4">
+                            <div class="card-body">
+                                <h5 class="card-title">M41A pulse</h5>
+                                <p class="card-text">Software Used:Maya, Substance Painter</p>
+                            </div>
+                          </video>
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 聯絡區塊 -->
-    <section id="contact" class="py-5">
+    <!-- 3D作品區塊 -->
+    <section id="3Dwork" class="py-5">
         <div class="container">
             <h2 class="text-center mb-4">3Dwork.</h2>
             <div class="row g-4">
@@ -142,8 +127,15 @@
     </section>
 
     <!-- 頁尾 -->
-    <footer class="bg-secondary text-white text-center py-3">
+    <footer>
         <p class="mb-0">© 2024 ZILIN's Portfolio.</p>
     </footer>
 </body>
+
+<script type="module">
+    import { Toast } from 'bootstrap.esm.min.js'
+  
+    Array.from(document.querySelectorAll('.toast'))
+      .forEach(toastNode => new Toast(toastNode))
+  </script>
 </html>
