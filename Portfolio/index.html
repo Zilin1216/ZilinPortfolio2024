@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Website</title>
     <!-- 引入 Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- 引入自訂 CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- 引入 AOS 的 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    
 </head>
 <body>
 
@@ -19,16 +23,16 @@
                 <h1>ZILIN's Portfolio</h1>
                 <nav>
                     <a href="#about">About.</a>
-                    <a href="/Portfolio/illustration.html" target="_blank">illustration</a>
-                    <a href="#media">Media.</a>
-                    <a href="#3Dwork">3Dwork.</a>
+                    <a href="/Portfolio/illustration.html" target="_blank">Illustration.</a>
+                    <a href="/Portfolio/media.html" target="_blank">Media.</a>
+                    <a href="/Portfolio/3Dworks.html" target="_blank">3Dwork.</a>
                 </nav>
             </div>
         </div>
     </header>
 
     <!-- Carousel -->
-<div id="demo" class="carousel slide" data-bs-ride="carousel">
+    <div id="demo" class="carousel slide shadow" data-bs-ride="carousel" data-aos="fade-right">
 
     <!-- Indicators/dots -->
     <div class="carousel-indicators">
@@ -57,71 +61,54 @@
     <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
       <span class="carousel-control-next-icon"></span>
     </button>
-  </div>
+    </div>
   
-    <!-- 介紹區塊 -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
+    <!-- 介紹區塊 --> 
+    <section id="about" class="parallax" style="background-image: url('img/000033150031.png');">
+        <div class="container text-center shadow mt-5 p-5 rounded bg-light-transparent">
+            <div class="row align-items-center" data-aos="fade-down">
+                <!-- 文字區域 -->
+                <div class="col-md-6 text-md-start text-center">
                     <h2>About.</h2>
-                    <p>Hello, this is ZI LIN.
-                        I'm currently studying at NUTC and majoring in Multimedia Design.
-                        This website is used for recording my works.</p>
+                    <p>
+                        Hello, this is ZI LIN.<br>
+                        I'm currently studying at NUTC and majoring in Multimedia Design.<br>
+                        This website is used for recording my works.
+                    </p>
                 </div>
+                <!-- 圖片區域 -->
                 <div class="col-md-6 text-center">
-                    <img src="img/me.png" alt="Profile Picture">
+                    <img src="img/me.png" alt="Profile Picture" class="shadow img-fluid">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 作品區塊 -->
-
-    <section id="media" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Media.</h2>
-            <div class="row g-4">
-                <div class="col-md-12">
-                    <div class="card shadow h-100">
-                        <video width="fuid" controls>
-                            <source src="media/Dream.mp4" type="video/mp4">
-                            <div class="card-body">
-                                <h5 class="card-title">M41A pulse</h5>
-                                <p class="card-text">Software Used:Maya, Substance Painter</p>
-                            </div>
-                          </video>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3D作品區塊 -->
-    <section id="3Dwork" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">3Dwork.</h2>
-            <div class="row g-4">
-                <div class="col-md-12">
-                    <div class="card shadow h-100">
-                        <img src="img/m41.png" class="card-img-top" alt="Project 1">
-                        <div class="card-body">
-                            <h5 class="card-title">M41A pulse</h5>
-                            <p class="card-text">Software Used:Maya, Substance Painter</p>
+    <!-- 聯絡表單 -->
+    <section id="contact" class="parallax" style="background-image: url('img/000033150031.png');">
+        <div class="container text-center shadow mt-5 p-5 rounded bg-light-transparent">
+            <div class="row justify-content-center" data-aos="fade-right">
+                <div class="col-md-8">
+                    <h2 class="text-center mb-4">Contact Me</h2>
+                            <form action="mailto:e97716@gmail.com" method="POST" enctype="text/plain">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea id="message" class="form-control" rows="5" placeholder="Enter your message" required></textarea>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="custom-button">Click Me</button>
+                                </div>
+                            </form>
                         </div>
-                    </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="card shadow h-100">
-                        <img src="img/phone.jpg" class="card-img-top" alt="Project 2">
-                        <div class="card-body">
-                            <h5 class="card-title">電話亭</h5>
-                            <p class="card-text">Software Used:Maya, Substance Painter</p>
-                        </div>
-                    </div>
-                </div>
-               
             </div>
         </div>
     </section>
@@ -138,4 +125,12 @@
     Array.from(document.querySelectorAll('.toast'))
       .forEach(toastNode => new Toast(toastNode))
   </script>
+  <!-- 引入 AOS 的 JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1200, // 動畫持續時間（毫秒）
+        once: true,     // 滾動動畫只執行一次
+    });
+</script>
 </html>
