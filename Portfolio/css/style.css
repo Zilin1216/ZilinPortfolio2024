@@ -35,7 +35,12 @@ header nav a:hover {
     text-decoration: underline; /* 滑鼠移上時加底線 */
 }
 
-
+section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
 
 .bg-light-transparent {
     background-color: rgba(255, 255, 255, 0.6); /* 白色，80% 不透明 */
@@ -87,15 +92,18 @@ header nav a:hover {
 
 #about, #illustration {
     background-image: url('img/000033150031.png');
+    min-height: 100vh; /* 確保每個區塊至少占滿一屏高度 */
+    margin: 0;
 }
 
 #illustration {
     background-image: url('img/000033150031.png');
+    margin-bottom: 0;
 }
 
 #illustration h2 {
     font-weight: bold;
-    margin-bottom: 2rem;
+    margin-bottom: 50px;
     text-align: center;
 }
 
@@ -119,9 +127,38 @@ header nav a:hover {
     margin-top: 1rem;
 }
 
+#illustration, #photography {
+    background-image: url('img/000033150031.png');
+    min-height: 100vh; /* 確保每個區塊至少占滿一屏高度 */
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .parallax {
+        padding: 3rem 0;
+    }
+}
+
+#photography {
+    background-image: url('img/000033150031.png');
+    margin-top: 0;
+    margin-bottom: 50px;
+}
+
+#photography h2 {
+    font-weight: bold;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.carousel {
+    height: auto; /* 讓旋轉木馬根據內容調整高度 */
+}
+
 #contact {
     padding: 5rem 0;
-    background-color: #f8f9fa;
+    background-image: url(/Portfolio/img/000033150031.png);
+    margin-top: 50px;
 }
 
 #contact h2 {
@@ -144,6 +181,7 @@ header nav a:hover {
     margin-top: 1rem;
 }
 
+
 .custom-button {
     background-color: #9bd2cc;
     color: white;
@@ -163,6 +201,7 @@ footer {
     color: white;
     text-align: center;
     padding: 1rem 0;
+    bottom: 0;
 }
 
 footer p {
@@ -178,11 +217,12 @@ body, html {
 }
 
 .parallax {
-    background-attachment: fixed;
+    background-image: url(/Portfolio/img/000033150031.png);
+    background-attachment: scroll;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh; /* 每個視差區塊佔滿一個視窗高度 */
+    padding: 5rem 0;
 }
 
 /* 初始狀態，讓元素不可見 */
