@@ -1,14 +1,17 @@
 /* 通用樣式 */
 body {
-    font-family:Helvetica, sans-serif;
-    scroll-behavior: smooth;
-    padding-top: 80px;
+    font-family: "Noto Sans TC", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    background-image: image('image/000033150031.png');
 }
 
+
 header {
-    background-color: #afded9;
+    background-color: #9bd2cc;
     color: white; /* 文字顏色 */
-    padding: 1rem 0; /* 上下內距 */
+    padding: 0.5rem 0; /* 上下內距 */
     position: fixed; /* 固定位置 */
     top: 0; /* 固定在頁面頂部 */
     width: 100%; /* 滿版寬度 */
@@ -32,16 +35,38 @@ header nav a:hover {
     text-decoration: underline; /* 滑鼠移上時加底線 */
 }
 
+
+
 .bg-light-transparent {
     background-color: rgba(255, 255, 255, 0.6); /* 白色，80% 不透明 */
     backdrop-filter: blur(10px); /* 添加模糊效果（可選） */
     -webkit-backdrop-filter: blur(10px); /* 兼容 Safari */
+
+}
+
+.container {
+    max-width: 100%;
+    padding: 15px; /* 確保內容有間距 */
+    box-sizing: border-box;
+}
+
+#Welcome {
+    background: url('img/Wellcom_banner02.png') no-repeat center center;
+    background-size: cover;
+    position: relative; /* 確保不影響子元素 */
+    z-index: 0;
+}
+#Welcome h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 60px;
+    font-weight: 620;
 }
 
 #about {
-    padding: 5rem 0;
-    background-color: #f8f9fa; /* Bootstrap 的 light 顏色 */
+    background-image: url('img/000033150031.png');
+    
 }
+
 
 #about img {
     max-width: 100%;
@@ -50,21 +75,25 @@ header nav a:hover {
 }
 
 #about h2 {
-    font-weight: bold;
-    margin-bottom: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5em;
 }
 
 #about p {
     font-size: 1.1rem;
     line-height: 1.6;
+    font-weight: 300;
 }
 
-#projects {
-    padding: 5rem 0;
-    background-color: #ffffff;
+#about, #illustration {
+    background-image: url('img/000033150031.png');
 }
 
-#projects h2 {
+#illustration {
+    background-image: url('img/000033150031.png');
+}
+
+#illustration h2 {
     font-weight: bold;
     margin-bottom: 2rem;
     text-align: center;
@@ -82,6 +111,7 @@ header nav a:hover {
 
 .card img {
     border-radius: 4px;
+    border-image-width: 400px;
 }
 
 .card .card-title {
@@ -115,7 +145,7 @@ header nav a:hover {
 }
 
 .custom-button {
-    background-color: #afded9;
+    background-color: #9bd2cc;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -129,7 +159,7 @@ header nav a:hover {
 
 
 footer {
-    background-color:#afded9;
+    background-color:#9bd2cc;
     color: white;
     text-align: center;
     padding: 1rem 0;
@@ -155,3 +185,21 @@ body, html {
     height: 100vh; /* 每個視差區塊佔滿一個視窗高度 */
 }
 
+/* 初始狀態，讓元素不可見 */
+.animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(20px); /* 預設向下偏移 */
+  }
+  
+  /* 滾動進入視窗時的淡入效果 */
+  .animate-on-scroll.fade-in {
+    opacity: 1;
+    transform: translateY(0); /* 回到原始位置 */
+  }
+  
+  /* 滾動離開視窗時的淡出效果 */
+  .animate-on-scroll.fade-out {
+    opacity: 0;
+    transform: translateY(20px); /* 再次偏移 */
+  }

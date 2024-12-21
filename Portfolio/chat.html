@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <!-- 引入 Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 引入自訂 CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 引入 AOS 的 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 頁首 -->
+    <header>
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>ZI-LIN's Portfolio</h1>
+                <nav>
+                    <a href="#about">About</a>
+                    <a href="#illustration">Illustration</a>
+                    <a href="#photography">Photography</a>
+                    <a href="/Portfolio/3Dworks.html">3Dwork</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero 區域 -->
+    <section id="Welcome" class="parallax animate-on-scroll">
+        <div class="text-center">
+            <h1>WELCOME to ZI-LIN's PORTFOLIO</h1>
+            <p class="lead">Explore my works and creative journey!</p>
+        </div>
+    </section>
+
+    <!-- 介紹區塊 -->
+    <section id="about" class="parallax animate-on-scroll">
+        <div class="container text-center shadow mt-5 p-5 bg-light-transparent">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-md-start text-center">
+                    <h2>About</h2>
+                    <p>
+                        Hello, this is ZI-LIN.<br>
+                        I'm currently studying at NUTC and majoring in Multimedia Design.<br>
+                        This website is used for recording my works.<br>
+                        Hope U Enjoy!!
+                    </p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img src="img/me.png" alt="Profile Picture" class="shadow img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Illustration 區塊 -->
+    <section id="illustration" class="parallax">
+        <div class="container text-center p-5 shadow bg-light-transparent">
+            <h2 class="text-center m-4">Illustration</h2>
+            <div class="row g-4">
+                <!-- 作品卡片 -->
+                <div class="col-md-3">
+                    <div class="card shadow h-100">
+                        <img src="img/project01.png" class="card-img-top" alt="Project 1">
+                        <div class="card-body">
+                            <h5 class="card-title">窗邊的杏子</h5>
+                            <p class="card-text">Software Used: Procreate, Photoshop</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 其他卡片省略 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡表單 -->
+    <section id="contact" class="parallax">
+        <div class="container text-center shadow p-5 bg-light-transparent">
+            <h2>Contact Me</h2>
+            <form action="mailto:e97716@gmail.com" method="POST" enctype="text/plain">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" class="form-control" rows="5" placeholder="Enter your message" required></textarea>
+                </div>
+                <div class="d-grid">
+                    <button class="custom-button">Send</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>© 2024 ZILIN's Portfolio. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript 引用 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        AOS.init({
+            duration: 1500,
+            once: false,
+            mirror: true,
+        });
+    </script>
+</body>
+</html>
