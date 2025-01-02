@@ -28,7 +28,7 @@
             formData.append('description', document.getElementById('description').value);
             formData.append('file', document.getElementById('file').files[0]);
 
-            fetch('http://localhost:3000/api/upload', {
+            fetch('https://zilinportfolio2024.onrender.com/api/upload', {
                 method: 'POST',
                 body: formData
             })
