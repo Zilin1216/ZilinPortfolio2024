@@ -73,5 +73,5 @@ app.get('/api/images', (req, res) => {
 
 // 啟動伺服器
 app.listen(port, () => {
-  console.log(`伺服器運行中，請訪問：http://localhost:${port}`);
+  app.use('/uploads', express.static('uploads'));
 });
