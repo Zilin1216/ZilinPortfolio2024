@@ -50,7 +50,8 @@ const upload = multer({ storage });
 // 處理文件上傳與表單數據
 app.post('/api/upload', upload.single('file'), (req, res) => {
   const { title, description } = req.body;
-  const imageUrl = `/uploads/${req.file.filename}`; // 儲存圖片路徑
+  const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+ // 儲存圖片路徑
 
   const newImage = { title, description, imageUrl };
 
