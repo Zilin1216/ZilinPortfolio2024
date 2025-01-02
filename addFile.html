@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/addFile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    <title>ADD Images to Carousel</title>
+</head>
+<body>
+    <h1>ADD Images to Carousel</h1>
+    <form id="imageFrom" enctype="multipart/form-data">
+        <!-- 輸入欄位 -->
+        <input type="text" id="title" name="title" placeholder="image title" required><br>
+        <input type="text" id="description" name="description" placeholder="image description" required><br>
+        <input type="file" id="file" name="file" accept="image/*" required><br>
+        <button type="submit" class="button">SUBMIT</button>
+    </form>
+    <a href="index.html" class="button">BACK HOME</a>
+    <script>
+        document.getElementById('imageFrom').addEventListener('submit', function(event) {
+            event.preventDefault();  // 防止表單的默認提交行為
+
+            const formData = new FormData();
+            formData.append('title', document.getElementById('title').value);
+            formData.append('description', document.getElementById('description').value);
+            formData.append('file', document.getElementById('file').files[0]);
+
+            fetch('http://localhost:3000/api/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('圖片新增成功!');
+                console.log(data);  // 顯示伺服器回傳的結果
+            })
+            .catch(error => console.error('圖片卡片失敗:', error));
+        });
+    </script>
+</body>
+</html>
