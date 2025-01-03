@@ -1,73 +1,75 @@
-//載入模組
-var express = require("express");
-var server = express();
-var bodyParser = require("body-parser");
-const NeDB = require('nedb');
+const express = require("express");
+const bodyParser = require("body-parser");
+const NeDB = require("nedb");
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
+
 const app = express();
 const port = 3000;
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
 
-
-//初始化伺服器與資料庫
-app.use(express.static(path.join(__dirname, 'Portfolio')));
-server.use(bodyParser.json());
-server.use(bodyParser.urlencoded());
-app.use('/uploads', express.static('uploads'));
-
-// 配置 NeDB
+// 初始化資料庫
 const db = new NeDB({
-  filename: 'images.db',
+  filename: path.join(__dirname, "data", "images.db"),
   autoload: true,
 });
 
-// 檢查並建立 `uploads` 資料夾
-const uploadsDir = path.join(__dirname, 'uploads');
+// 檢查並創建 `uploads` 資料夾
+const uploadsDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir);
+  fs.mkdirSync(uploadsDir);
 }
 
-
-// JSON 解析中間件
-app.use(express.json());
-// 提供首頁
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Portfolio', 'index.html'));
-});
-
-// 配置 multer 上傳文件的存儲目錄和檔名
+// 配置 Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, 'uploads/'); // 上傳目錄
+    cb(null, uploadsDir); // 上傳目錄
   },
   filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname));
+    const uniqueName = Date.now() + path.extname(file.originalname); // 以時間戳命名檔案
+    cb(null, uniqueName);
   },
 });
 const upload = multer({ storage });
 
-// 處理文件上傳與表單數據
-app.post('/api/upload', upload.single('file'), (req, res) => {
+// 靜態檔案服務
+app.use(express.static(path.join(__dirname, "Portfolio")));
+app.use("/uploads", express.static("uploads"));
+
+// 中間件
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// 路由
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "Portfolio", "index.html"));
+});
+
+app.post("/api/uploads", upload.single("file"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send("未上傳檔案");
+  }
+
   const { title, description } = req.body;
-  const imageUrl = `/uploads/${req.file.filename}`; // 儲存圖片路徑
+  const imageUrl = `/uploads/${req.file.filename}`;
 
   const newImage = { title, description, imageUrl };
 
-  // 將圖片資料保存到 NeDB
+  // 將資料儲存到 NeDB
   db.insert(newImage, (err, newDoc) => {
-      if (err) {
-          return res.status(500).send('新增圖片失敗');
-      }
-      res.status(201).json(newDoc); // 回傳新增的圖片資料
+    if (err) {
+      return res.status(500).send("新增圖片失敗");
+    }
+    res.status(201).json(newDoc);
   });
 });
-app.get('/api/images', (req, res) => {
+
+app.get("/api/images", (req, res) => {
   db.find({}, (err, images) => {
-      if (err) {
-          return res.status(500).send('資料讀取錯誤');
-      }
-      res.json(images); // 返回圖片資料
+    if (err) {
+      return res.status(500).send("資料讀取錯誤");
+    }
+    res.json(images);
   });
 });
 
