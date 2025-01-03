@@ -49,6 +49,13 @@ const upload = multer({ storage });
 
 // 處理文件上傳與表單數據
 app.post('/api/upload', upload.single('file'), (req, res) => {
+  console.log('上傳的檔案資訊:', req.file); // 調試資訊
+  console.log('上傳的表單資料:', req.body);
+
+  if (!req.file) {
+    return res.status(400).send('檔案上傳失敗');
+  }
+
   const { title, description } = req.body;
   const imageUrl = `/uploads/${req.file.filename}`; // 儲存圖片路徑
 
@@ -56,18 +63,12 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
 
   // 將圖片資料保存到 NeDB
   db.insert(newImage, (err, newDoc) => {
-      if (err) {
-          return res.status(500).send('新增卡片失敗');
-      }
-      res.status(201).json(newDoc); // 回傳新增的圖片資料
-  });
-});
-app.get('/api/images', (req, res) => {
-  db.find({}, (err, images) => {
-      if (err) {
-          return res.status(500).send('資料讀取錯誤');
-      }
-      res.json(images); // 返回圖片資料
+    if (err) {
+      console.error('資料庫插入失敗:', err);
+      return res.status(500).send('新增卡片失敗');
+    }
+    console.log('成功插入資料:', newDoc);
+    res.status(201).json(newDoc); // 回傳新增的圖片資料
   });
 });
 
