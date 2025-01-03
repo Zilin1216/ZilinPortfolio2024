@@ -50,8 +50,7 @@ const upload = multer({ storage });
 // 處理文件上傳與表單數據
 app.post('/api/upload', upload.single('file'), (req, res) => {
   const { title, description } = req.body;
-  const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
- // 儲存圖片路徑
+  const imageUrl = `/uploads/${req.file.filename}`; // 儲存圖片路徑
 
   const newImage = { title, description, imageUrl };
 
@@ -74,5 +73,5 @@ app.get('/api/images', (req, res) => {
 
 // 啟動伺服器
 app.listen(port, () => {
-  app.use('/uploads', express.static('uploads'));
+  console.log(`伺服器運行中，請訪問：http://localhost:${port}`);
 });
