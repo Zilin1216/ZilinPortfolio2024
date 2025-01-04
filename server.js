@@ -1,79 +1,57 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const NeDB = require("nedb");
-const multer = require("multer");
-const path = require("path");
-const fs = require("fs");
+//install: node js
+//install web server package: express >npm install express
+var express = require("express");
+var server = express();
+var bodyParser = require("body-parser");
 
-const app = express();
-const port = 3000;
+//web root
+server.use(express.static(__dirname+"/AgencyProject"));
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded());
 
-// 初始化資料庫
-const db = new NeDB({
-  filename: path.join(__dirname, "data", "images.db"),
-  autoload: true,
+var fileUpload = require("express-fileupload");
+server.use(fileUpload({defCharset:'utf8', defParamCharset:'utf8'}));
+
+
+var DB = require("nedb-promises");
+var ProfolioDB = DB.create(__dirname+"/profolio.db");
+var ContactDB = DB.create(__dirname+"/contact.db");
+ 
+
+// ProfolioDB.insert([
+//     { modal: "#portfolioModal1", imgSrc: "modalroundicons.png", heading: "Round Icons", text: "Graphic Design" },
+//     { modal: "#portfolioModal2", imgSrc: "startup-framework.png", heading: "Startup Framework", text: "Website Design" },
+//     { modal: "#portfolioModal3", imgSrc: "treehouse.png", heading: "Treehouse", text: "Website Design" },
+//     { modal: "#portfolioModal1", imgSrc: "roundicons.png", heading: "Round Icons", text: "Graphic Design" },
+//     { modal: "#portfolioModal2", imgSrc: "startup-framework.png", heading: "Startup Framework", text: "Website Design" },
+//     { modal: "#portfolioModal3", imgSrc: "treehouse.png", heading: "Treehouse", text: "Website Design" }
+// ])
+
+server.get("/services", (req, res)=>{
+    //DB find
+    var Services=[
+        {icon: "fa-shopping-cart", heading:"E-Commerce", text:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit."},
+        {icon: "fa-laptop", heading:"Responsive Design", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit."}
+    ];
+    res.send(Services);
 });
 
-// 檢查並創建 `uploads` 資料夾
-const uploadsDir = path.join(__dirname, "uploads");
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir);
-}
+server.get("/profolio", (req,res)=>{
+      //DB
+      ProfolioDB.find({}).then(results=>{
+        if(results != null){
+             res.send(results);
+        }else{
+            res.send("Error!");
+        }
+      })
+})
 
-// 配置 Multer
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadsDir); // 上傳目錄
-  },
-  filename: (req, file, cb) => {
-    const uniqueName = Date.now() + path.extname(file.originalname); // 以時間戳命名檔案
-    cb(null, uniqueName);
-  },
-});
-const upload = multer({ storage });
+server.post("/contact_me", (req,res)=>{
+     ContactDB.insert(req.body);
+     res.redirect("/#contact");
+})
 
-// 靜態檔案服務
-app.use(express.static(path.join(__dirname, "Portfolio")));
-app.use("/uploads", express.static("uploads"));
-
-// 中間件
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// 路由
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "Portfolio", "index.html"));
-});
-
-app.post("/api/uploads", upload.single("file"), (req, res) => {
-  if (!req.file) {
-    return res.status(400).send("未上傳檔案");
-  }
-
-  const { title, description } = req.body;
-  const imageUrl = `/uploads/${req.file.filename}`;
-
-  const newImage = { title, description, imageUrl };
-
-  // 將資料儲存到 NeDB
-  db.insert(newImage, (err, newDoc) => {
-    if (err) {
-      return res.status(500).send("新增圖片失敗");
-    }
-    res.status(201).json(newDoc);
-  });
-});
-
-app.get("/api/images", (req, res) => {
-  db.find({}, (err, images) => {
-    if (err) {
-      return res.status(500).send("資料讀取錯誤");
-    }
-    res.json(images);
-  });
-});
-
-// 啟動伺服器
-app.listen(port, () => {
-  console.log(`伺服器運行中，請訪問：http://localhost:${port}`);
-});
+server.listen(80, ()=>{
+    console.log("Server is running at port 80.");
+})
