@@ -18,14 +18,12 @@ var ProfolioDB = DB.create(__dirname+"/profolio.db");
 var ContactDB = DB.create(__dirname+"/contact.db");
  
 
-// ProfolioDB.insert([
-//     { modal: "#portfolioModal1", imgSrc: "modalroundicons.png", heading: "Round Icons", text: "Graphic Design" },
-//     { modal: "#portfolioModal2", imgSrc: "startup-framework.png", heading: "Startup Framework", text: "Website Design" },
-//     { modal: "#portfolioModal3", imgSrc: "treehouse.png", heading: "Treehouse", text: "Website Design" },
-//     { modal: "#portfolioModal1", imgSrc: "roundicons.png", heading: "Round Icons", text: "Graphic Design" },
-//     { modal: "#portfolioModal2", imgSrc: "startup-framework.png", heading: "Startup Framework", text: "Website Design" },
-//     { modal: "#portfolioModal3", imgSrc: "treehouse.png", heading: "Treehouse", text: "Website Design" }
-// ])
+/*ProfolioDB.insert([
+     { modal: "card1", imgSrc: "img/project01.png", heading: "Round Icons", text: "Graphic Design" },
+     { modal: "card2", imgSrc: "img/project02.png", heading: "Startup Framework", text: "Website Design" },
+     { modal: "card3", imgSrc: "img/project03.png", heading: "Round Icons", text: "Graphic Design" },
+     { modal: "card4", imgSrc: "img/project04.png", heading: "Round Icons", text: "Graphic Design" },
+ ])*/
 
 server.get("/services", (req, res)=>{
     //DB find
