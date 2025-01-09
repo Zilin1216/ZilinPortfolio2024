@@ -78,17 +78,13 @@
     </section>
 
     <!--illutration-->
-    <div id="app">
-        <illustration-section></illustration-section>
-      </div>
-    
+    <!--<div class="container text-center">
+      <h2 class="text-center animate-on-scroll">Illustration</h2>
       <script>
         // 定義 Vue 組件
         const IllustrationSection = {
           template: `
-            <div class="container text-center">
-              <h2 class="text-center animate-on-scroll">Illustration</h2>
-              <div class="row row-cols-1 row-cols-md-4 p-5">
+          <div class="row row-cols-1 row-cols-md-4 p-5">
                 <div v-for="(item, index) in items" :key="index" class="col">
                   <div class="card h-100">
                     <img :src="item.image" class="card-img-top" :alt="item.title">
@@ -98,8 +94,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
           `,
           data() {
             return {
@@ -128,31 +122,26 @@
         app.component("illustration-section", IllustrationSection);
         app.mount("#app");
       </script>
-      
+      </div>
+    </div>-->
+  
+    <div id="app" class="col-12" style="background-color: #fff;" data-aos="fade-left">
+      <!-- Vue will mount here -->
+      <illustration-section></illustration-section>
+    </div>
+  
+    <!-- 引入 Vue 應用程序 -->
+    <script src="bs5vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-     <!--<div id="app" class="col-12" style="background-color: #fff;" data-aos="fade-left">-->
-       <!-- Vue will mount here -->
-       <!--<illustration-section>
-           <div class="container text-center">
-               <h2 class="text-center animate-on-scroll">Illustration.</h2>
-               <div class="row row-cols-1 row-cols-md-4 p-5">
-                 <div class="col">
-                   <div class="card h-100">
-                     <img src="img/project01.png" class="card-img-top" alt="..."></a>
-                     <div class="card-body">
-                       <h5 class="card-title">窗邊的杏子</h5>
-                       <p class="card-text">Software Used:Procreate, Adobe Illustration, Photoshop</p>
-                     </div>
-                   </div>
-                 </div>
-       </illustration-section>
-     </div>-->
+    
 
     <!-- Photography Section -->
-    <section id="photography" class="col-12" style="background-color: #fff;">
-        <div class="container p-5 text-center">
-            <h2 class="text-center animate-on-scroll">Photography.</h2>
-            <div class="row" data-aos="fade-left">
+    <section id="photography" class="col-12">
+        <div class="container p-5 text-center" data-aos="fade-left">
+            <h2 class="text-center">Photography.</h2>
+            <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <!-- Carousel -->
                     <div id="demo" class="carousel slide" data-bs-ride="carousel">

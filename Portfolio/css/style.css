@@ -220,46 +220,6 @@ header {
 }
 
 
-#contact {
-    padding: 5rem 0;
-    background-image: url(/Portfolio/img/000033150031.png);
-    margin-top: 50px;
-}
-
-#contact h2 {
-    font-weight: bold;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-#contact .card {
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#contact .card img {
-    border-radius: 4px;
-}
-
-#contact .card-title {
-    font-weight: bold;
-    margin-top: 1rem;
-}
-
-
-.custom-button {
-    background-color: #9bd2cc;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.custom-button:hover {
-    background-color:#ffa689;
-}
-
 
 footer {
     background-color:#9bd2cc;
@@ -276,21 +236,3 @@ footer p {
 }
 
 
-/* 初始狀態，讓元素不可見 */
-.animate-on-scroll {
-    opacity: 0;
-    transition: opacity 0.8s ease, transform 0.8s ease;
-    transform: translateY(20px); /* 預設向下偏移 */
-  }
-  
-  /* 滾動進入視窗時的淡入效果 */
-  .animate-on-scroll.fade-in {
-    opacity: 1;
-    transform: translateY(0); /* 回到原始位置 */
-  }
-  
-  /* 滾動離開視窗時的淡出效果 */
-  .animate-on-scroll.fade-out {
-    opacity: 0;
-    transform: translateY(20px); /* 再次偏移 */
-  }
