@@ -1,6 +1,6 @@
 let text = document.getElementById('text');
 let BG = document.getElementById('BG');
-let tree = document.getElementById('tree');
+let Top = document.getElementById('tree');
 
 window.addEventListener('scroll', ()=>{
     let value = window.scrollY;

@@ -23,7 +23,7 @@ var card = Vue.createApp({
 // 定義 IllustrationSection 組件
 card.component("illustration-section", {
   template: `
-    <div class="container text-center">
+    <div id="illustration" class="container text-center">
       <h2 class="text-center">Illustration</h2>
       <div class="row row-cols-1 row-cols-md-4 p-5">
         <div v-for="(item, index) in $root.cards" :key="index" class="col">
