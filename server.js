@@ -6,7 +6,7 @@ var fileUpload = require("express-fileupload");
 var path = require("path");
 
 // 加入文件上傳中間件
-server.use(express.static(__dirname + "/Portfolio"));
+server.use(express.static("img"));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(fileUpload({ defCharset: "utf8", defParamCharset: "utf8" }));
@@ -21,6 +21,8 @@ PortfolioDB.insert([
     { modal: "card3", imgSrc: "img/project03.png", heading:"杏子", text: "Software Used: Procreate" }
  ])
 
+// 設定 js 資料夾為靜態資源資料夾
+app.use("/js", express.static(path.join(__dirname, "js")));
 
  server.get("/Portfolio", (req, res) => {
   ProfolioDB.find({})
