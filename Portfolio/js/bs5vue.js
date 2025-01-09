@@ -20,26 +20,26 @@ var card = Vue.createApp({
   },
 });
 
-// 掛載 Vue 應用程式到指定的 DOM 元素
+// 定義 IllustrationSection 組件
 card.component("illustration-section", {
   template: `
     <div class="container text-center">
       <h2 class="text-center">Illustration</h2>
       <div class="row row-cols-1 row-cols-md-4 p-5">
-        <div v-for="(card, index) in cards" :key="index" class="col">
+        <div v-for="(item, index) in $root.cards" :key="index" class="col">
           <div class="card h-100">
-            <img :src="'/img/' + card.imgSrc" class="card-img-top" :alt="card.heading">
+            <img :src="item.imgSrc" class="card-img-top" :alt="item.heading">
             <div class="card-body">
-              <h5 class="card-title">{{ card.heading }}</h5>
-              <p class="card-text">{{ card.text }}</p>
+              <h5 class="card-title">{{ item.heading }}</h5>
+              <p class="card-text">{{ item.text }}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   `,
-  props: ["cards"], // 接收卡片數據
 });
 
+// 掛載 Vue 應用程式到指定的 DOM 元素
 card.mount("#app");
 
