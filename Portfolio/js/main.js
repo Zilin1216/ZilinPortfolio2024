@@ -24,11 +24,4 @@ const observer = new IntersectionObserver(
   const animatedElements = document.querySelectorAll(".animate-on-scroll");
   animatedElements.forEach((element) => observer.observe(element));
 
-  import { createApp } from "vue";
-import IllustrationSection from "./IllustrationSection.js";
-
-const app = createApp({});
-app.component("illustration-section", IllustrationSection);
-app.mount("#app");
-
   

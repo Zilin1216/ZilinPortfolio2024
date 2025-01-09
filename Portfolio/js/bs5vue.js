@@ -7,7 +7,7 @@ var card = Vue.createApp({
   mounted() {
     // 使用 jQuery 的 $.ajax 發送請求
     $.ajax({
-      url: "/Portfolio", // API 路徑
+      url: "/portfolio", // API 路徑
       method: "GET",    // HTTP 方法
       dataType: "json", // 資料格式
       success: (results) => {
@@ -28,7 +28,7 @@ card.component("illustration-section", {
       <div class="row row-cols-1 row-cols-md-4 p-5">
         <div v-for="(card, index) in cards" :key="index" class="col">
           <div class="card h-100">
-            <img :src="card.imgSrc" class="card-img-top" :alt="card.heading">
+            <img :src="'/img/' + card.imgSrc" class="card-img-top" :alt="card.heading">
             <div class="card-body">
               <h5 class="card-title">{{ card.heading }}</h5>
               <p class="card-text">{{ card.text }}</p>
