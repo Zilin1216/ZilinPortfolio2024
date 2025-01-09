@@ -16,6 +16,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
     
+    <!-- 引入 Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.prod.js"></script>
+    <!-- 引入 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 </head>
 <body id="page-top" class="index">
 
@@ -27,7 +32,6 @@
             <a href="#about" class="active">About</a>
             <a href="#illustration">Illustration</a>
             <a href="#photography">Phptography</a>
-            <a href="addFile.html">Add File</a>
         </nav>
         
     </header>
@@ -47,7 +51,7 @@
 
     <!-- 介紹 --> 
     <section id="about" class="sec">
-        <div class="container text-center p-5 bg-light-transparent position-absolute top-50 start-0 translate-middle-y">
+        <div class="container text-center p-5 position-absolute top-50 start-0 translate-middle-y">
             <div class="row align-items-center" data-aos="fade-right">
                 <!-- 文字 -->
                 <div class="col-md-6 col-sm-12 text-md-start text-center">
@@ -74,11 +78,75 @@
     </section>
 
     <!--illutration-->
-    
     <div id="app">
-        <!-- Vue will mount here -->
         <illustration-section></illustration-section>
       </div>
+    
+      <script>
+        // 定義 Vue 組件
+        const IllustrationSection = {
+          template: `
+            <div class="container text-center">
+              <h2 class="text-center animate-on-scroll">Illustration</h2>
+              <div class="row row-cols-1 row-cols-md-4 p-5">
+                <div v-for="(item, index) in items" :key="index" class="col">
+                  <div class="card h-100">
+                    <img :src="item.image" class="card-img-top" :alt="item.title">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ item.title }}</h5>
+                      <p class="card-text">{{ item.description }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `,
+          data() {
+            return {
+              items: [], // 初始化為空，等待資料庫的數據
+            };
+          },
+          methods: {
+            async fetchItems() {
+              try {
+                const response = await fetch("/api/portfolio");
+                if (!response.ok) throw new Error("Failed to fetch portfolio data.");
+                const data = await response.json();
+                this.items = data; // 將資料庫的數據賦值給 items
+              } catch (error) {
+                console.error("Error fetching portfolio items:", error);
+              }
+            },
+          },
+          mounted() {
+            this.fetchItems(); // 在組件掛載時調用方法，從後端獲取資料
+          },
+        };
+      
+        // 初始化 Vue 應用程式
+        const app = Vue.createApp({});
+        app.component("illustration-section", IllustrationSection);
+        app.mount("#app");
+      </script>
+      
+
+     <!--<div id="app" class="col-12" style="background-color: #fff;" data-aos="fade-left">-->
+       <!-- Vue will mount here -->
+       <!--<illustration-section>
+           <div class="container text-center">
+               <h2 class="text-center animate-on-scroll">Illustration.</h2>
+               <div class="row row-cols-1 row-cols-md-4 p-5">
+                 <div class="col">
+                   <div class="card h-100">
+                     <img src="img/project01.png" class="card-img-top" alt="..."></a>
+                     <div class="card-body">
+                       <h5 class="card-title">窗邊的杏子</h5>
+                       <p class="card-text">Software Used:Procreate, Adobe Illustration, Photoshop</p>
+                     </div>
+                   </div>
+                 </div>
+       </illustration-section>
+     </div>-->
 
     <!-- Photography Section -->
     <section id="photography" class="col-12" style="background-color: #fff;">
@@ -86,16 +154,30 @@
             <h2 class="text-center animate-on-scroll">Photography.</h2>
             <div class="row" data-aos="fade-left">
                 <div class="col-md-12 col-sm-12">
-
                     <!-- Carousel -->
                     <div id="demo" class="carousel slide" data-bs-ride="carousel">
-                        <!-- 動態生成 Indicators -->
-                        <div class="carousel-indicators" id="carouselIndicators"></div>
 
-                        <!-- 動態生成 Images -->
-                        <div class="carousel-inner" id="carouselInner"></div>
-
-                        <!-- Left and right controls/icons -->
+                        <!-- Indicators/dots -->
+                         <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                        </div>
+  
+                        <!-- The slideshow/carousel -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/1735838761352.png" alt="Mario" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                 <img src="img/1735838770679.JPG" alt="YA" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                    <img src="img/1735838777775.JPG" alt="Kyoto" class="d-block w-100">
+                            </div>
+                        </div>
+  
+                         <!-- Left and right controls/icons -->
                         <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon"></span>
                         </button>
@@ -108,36 +190,9 @@
         </div>
     </section>
 
-    <script>
-        // 從伺服器獲取圖片資料
-        /*fetch('https://zilinportfolio2024.onrender.com/api/images')
-            .then(response => {
-                if (!response.ok) throw new Error('無法載入圖片資料');
-                return response.json();
-            })
-            .then(images => {
-                const carouselInner = document.getElementById('carouselInner');
-                const carouselIndicators = document.getElementById('carouselIndicators');
-
-                // 動態生成 Images 和 Indicators
-                carouselInner.innerHTML = images.map((image, index) => `
-                    <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                        <img src="${image.imageUrl}" alt="${image.title}" class="d-block w-100">
-                    </div>
-                `).join('');
-
-                carouselIndicators.innerHTML = images.map((_, index) => `
-                    <button type="button" data-bs-target="#demo" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}"></button>
-                `).join('');
-            })
-            .catch(error => console.error('載入圖片失敗:', error));
-            */
-    </script>
-
-
 </body>
 
-    <!-- 頁尾 -->
+<!-- 頁尾 -->
 <footer>
     <p class="mb-0">© 2024 ZILIN's Portfolio.</p>
 </footer>
@@ -148,10 +203,10 @@
 <script src="js/parallax.js">//滾動式差</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">//bs5</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js">//aos動畫</script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js">//jquery</script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">//jquer</script>
-<script src="https://unpkg.com/vue@3.2.47/dist/vue.global.js">//vue</script>
+ 
+
+
   
 <script>
     AOS.init({
