@@ -75,52 +75,6 @@
     </section>
 
     <!--illutration-->
-    <!--<div class="container text-center">
-      <h2 class="text-center animate-on-scroll">Illustration</h2>
-      <script>
-        // 定義 Vue 組件
-        const IllustrationSection = {
-          template: `
-          <div class="row row-cols-1 row-cols-md-4 p-5">
-                <div v-for="(item, index) in items" :key="index" class="col">
-                  <div class="card h-100">
-                    <img :src="item.image" class="card-img-top" :alt="item.title">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ item.title }}</h5>
-                      <p class="card-text">{{ item.description }}</p>
-                    </div>
-                  </div>
-                </div>
-          `,
-          data() {
-            return {
-              items: [], // 初始化為空，等待資料庫的數據
-            };
-          },
-          methods: {
-            async fetchItems() {
-              try {
-                const response = await fetch("/api/portfolio");
-                if (!response.ok) throw new Error("Failed to fetch portfolio data.");
-                const data = await response.json();
-                this.items = data; // 將資料庫的數據賦值給 items
-              } catch (error) {
-                console.error("Error fetching portfolio items:", error);
-              }
-            },
-          },
-          mounted() {
-            this.fetchItems(); // 在組件掛載時調用方法，從後端獲取資料
-          },
-        };
-      
-        // 初始化 Vue 應用程式
-        const app = Vue.createApp({});
-        app.component("illustration-section", IllustrationSection);
-        app.mount("#app");
-      </script>
-      </div>
-    </div>-->
   
     <div id="app" class="col-12" style="background-color: #fff;" data-aos="fade-left">
       <!-- Vue will mount here -->
