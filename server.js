@@ -15,11 +15,12 @@ server.use(fileUpload({ defCharset: "utf8", defParamCharset: "utf8" }));
 var DB = require("nedb-promises");
 var PortfolioDB = DB.create(__dirname + "/portfolio.db");
 
-/*PortfolioDB.insert([
+PortfolioDB.insert([
     { modal: "card1", imgSrc: "img/project01.png", heading:"窗邊的杏子", text: "Software Used: Procreate, Adobe Illustration, Photoshop" },
     { modal: "card2", imgSrc: "img/project02.png", heading:"時髦魔女", text: "Software Used: Procreate, Adobe Illustration, Photoshop" },
-    { modal: "card3", imgSrc: "img/project03.png", heading:"杏子", text: "Software Used: Procreate" }
- ])*/
+    { modal: "card3", imgSrc: "img/project03.png", heading:"杏子", text: "Software Used: Procreate" },
+    { modal: "card3", imgSrc: "img/project04.PNG", heading:"星", text: "Software Used: Procreate" }
+ ])
 
 
  server.get("/portfolio", (req, res) => {
