@@ -1,30 +1,60 @@
 var card = Vue.createApp({
   data() {
     return {
-      cards: [], // 初始化 cards 為空陣列
+      cards: [], // 儲存作品列表
     };
   },
+  methods: {
+    // 獲取所有作品資料
+    fetchCards() {
+      $.ajax({
+        url: "/portfolio",
+        method: "GET",
+        dataType: "json",
+        success: (results) => {
+          console.log("Fetched results:", results);
+          this.cards = results;
+        },
+        error: (xhr, status, error) => {
+          console.error("Error fetching data:", status, error);
+        },
+      });
+    },
+    // 新增作品資料
+    addCard() {
+      const newCard = {
+        modal: "card7",
+        imgSrc: "img/心城.png",
+        heading: "night",
+        text: "Software Used: Photoshop",
+      };
+
+      $.ajax({
+        url: "/portfolio/add",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(newCard),
+        success: () => {
+          console.log("New card added successfully");
+          this.fetchCards(); // 更新作品列表
+        },
+        error: (xhr, status, error) => {
+          console.error("Error adding new card:", status, error);
+        },
+      });
+    },
+  },
   mounted() {
-    // 使用 jQuery 的 $.ajax 發送請求
-    $.ajax({
-      url: "/portfolio", // API 路徑
-      method: "GET",    // HTTP 方法
-      dataType: "json", // 資料格式
-      success: (results) => {
-        this.cards = results; // 將回傳的資料綁定到 Vue 的 cards
-      },
-      error: (xhr, status, error) => {
-        console.error("Error fetching data:", status, error);
-      },
-    });
+    this.fetchCards(); // 初始化時獲取資料
   },
 });
 
-// 定義 IllustrationSection 組件
+// 定義組件
 card.component("illustration-section", {
   template: `
-    <div id="illustration" class="container text-center">
+    <div class="container text-center">
       <h2 class="text-center">Illustration</h2>
+      <button @click="$root.addCard" class="btn btn-primary mb-3">新增作品</button>
       <div class="row row-cols-1 row-cols-md-4 p-5">
         <div v-for="(item, index) in $root.cards" :key="index" class="col">
           <div class="card h-100">
@@ -40,6 +70,5 @@ card.component("illustration-section", {
   `,
 });
 
-// 掛載 Vue 應用程式到指定的 DOM 元素
+// 掛載 Vue 應用程式
 card.mount("#app");
-
